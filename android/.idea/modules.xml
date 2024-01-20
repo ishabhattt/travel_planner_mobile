@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/travel_planner_mobile.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/travel_planner_mobile.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1267407660/travel_planner_mobile.react-native-gesture-handler.main.iml" filepath="$PROJECT_DIR$/.idea/modules/-1267407660/travel_planner_mobile.react-native-gesture-handler.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1311198339/travel_planner_mobile.react-native-mmkv.main.iml" filepath="$PROJECT_DIR$/.idea/modules/-1311198339/travel_planner_mobile.react-native-mmkv.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/-1973353272/travel_planner_mobile.react-native-reanimated.main.iml" filepath="$PROJECT_DIR$/.idea/modules/-1973353272/travel_planner_mobile.react-native-reanimated.main.iml" />
+    </modules>
+  </component>
+</project>
