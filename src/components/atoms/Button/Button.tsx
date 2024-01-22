@@ -12,6 +12,7 @@ interface ButtonProps {
   variant: "primary" | "secondary" | "outlined";
   onPress: () => void;
   disabled?: boolean;
+  fullWidth?: boolean;
 }
 
 const Button = ({
@@ -19,6 +20,7 @@ const Button = ({
   variant,
   onPress,
   disabled,
+  fullWidth,
 }: PropsWithChildren<ButtonProps>) => {
   const getVariantStyle = (): TextStyle => {
     switch (variant) {
@@ -35,7 +37,11 @@ const Button = ({
 
   return (
     <TouchableOpacity
-      style={[styles.button, getVariantStyle()]}
+      style={[
+        styles.button,
+        getVariantStyle(),
+        fullWidth ? { width: "100%" } : {},
+      ]}
       onPress={onPress}
       disabled={disabled}
     >
