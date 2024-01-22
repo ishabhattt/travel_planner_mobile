@@ -1,11 +1,13 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import { SafeScreen } from "@/components/template";
+import FlightSearchCard from "@/components/template/FlightSearchCard";
 
 const FlightSearch = () => {
   return (
-    <View>
-      <Text>FlightSearch</Text>
-    </View>
+    <SafeScreen>
+      <FlightSearchCard />
+    </SafeScreen>
   );
 };
 
