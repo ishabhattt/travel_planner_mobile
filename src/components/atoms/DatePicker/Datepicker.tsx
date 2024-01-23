@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, View, TouchableOpacity, Modal } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Modal,
+  GestureResponderEvent,
+} from "react-native";
 import ReactNativeModernDatepicker from "react-native-modern-datepicker";
 // REFERENCE https://hosseinshabani.github.io/react-native-modern-datepicker/
 import Typography from "../Typography/Typography";
@@ -31,7 +38,12 @@ const Datepicker: React.FC<DatepickerProps> = ({
   const handleCloseModal = () => {
     setModalVisible(false);
   };
-
+  const handleOverlayPress = (e: GestureResponderEvent) => {
+    // Check if the touch event is outside the datepicker
+    if (e.target === e.currentTarget) {
+      handleCloseModal();
+    }
+  };
   return (
     <View style={styles.container}>
       {label && <Typography style={styles.label}>{label}</Typography>}
@@ -44,25 +56,24 @@ const Datepicker: React.FC<DatepickerProps> = ({
         transparent={true}
         animationType="slide"
         visible={modalVisible}
-        onRequestClose={() => {
-          handleCloseModal();
-        }}
-        onDismiss={() => {
-          handleCloseModal();
-        }}
+        onRequestClose={handleCloseModal}
       >
-        <View style={styles.modalContainer}>
+        <TouchableOpacity
+          style={styles.overlay} // Invisible overlay to capture taps outside the datepicker
+          activeOpacity={1}
+          onPress={handleOverlayPress}
+        >
           <View style={styles.datepickerContainer}>
             <ReactNativeModernDatepicker
               onSelectedChange={(newDate) => handleDateChange(newDate)}
               mode={"calendar"}
-              current={dayjs().format("YYYY-MM-DD")}
+              //   current={dayjs().format("YYYY-MM-DD")}
               selected={selectedDate}
               minuteInterval={30}
               style={{ borderRadius: 10 }}
             />
           </View>
-        </View>
+        </TouchableOpacity>
       </Modal>
     </View>
   );
@@ -105,6 +116,12 @@ const styles = StyleSheet.create({
   closeButtonText: {
     color: "white",
     fontWeight: "bold",
+  },
+  overlay: {
+    flex: 1,
+    backgroundColor: "rgba(0, 0, 0, 0.5)", // Adjust the transparency as needed
+    justifyContent: "center",
+    alignItems: "center",
   },
 });
 
