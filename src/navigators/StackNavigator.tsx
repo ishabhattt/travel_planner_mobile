@@ -4,6 +4,7 @@ import TabNavigator from "./BottomNavigator";
 import PopularDestinations from "@/screens/PopularDestinations/PopularDestinations";
 import Header from "@/components/atoms/Header/Header";
 import FlightSearch from "@/screens/FlightSearch";
+import TicketSelection from "@/screens/TicketSelection";
 
 const Stack = createStackNavigator<ApplicationStackParamList>();
 
@@ -30,6 +31,14 @@ function StackNavigator() {
       <Stack.Screen
         name="Flight Search"
         component={FlightSearch}
+        options={({ route, navigation }) => ({
+          header: (props) => <Header {...props} />,
+          headerShown: true,
+        })}
+      />
+      <Stack.Screen
+        name="Select Ticket"
+        component={TicketSelection}
         options={({ route, navigation }) => ({
           header: (props) => <Header {...props} />,
           headerShown: true,
