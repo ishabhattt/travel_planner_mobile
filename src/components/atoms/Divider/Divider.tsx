@@ -7,13 +7,14 @@ interface DividerProps {
   vertical?: boolean;
   fullWidth?: boolean;
   color?: string;
+  borderStyle?:"solid" | "dotted" | "dashed" | undefined
 }
 
 const Divider: React.FC<DividerProps> = ({
   horizontal,
   vertical,
   fullWidth,
-  color,
+  color,borderStyle
 }) => {
   const styles = createStyles();
   const theme = useTheme();
@@ -22,7 +23,7 @@ const Divider: React.FC<DividerProps> = ({
     width: vertical ? 1 : fullWidth ? "100%" : 1,
     height: horizontal ? 1 : "50%",
     backgroundColor: color || theme.colors.gray800,
-    borderStyle: "dashed",
+    borderStyle: borderStyle,
   };
 
   return <View style={[dividerStyle]} />;
