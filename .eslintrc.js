@@ -15,6 +15,8 @@ module.exports = {
 		'plugin:import/recommended',
 		'plugin:react/recommended',
 		'plugin:react/jsx-runtime',
+		"prettier",
+        "prettier/react"
 	],
 	parser: '@typescript-eslint/parser',
 	ignorePatterns: ['plugins/**/*', 'metro.config.js'],

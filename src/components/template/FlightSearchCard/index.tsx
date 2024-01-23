@@ -12,13 +12,20 @@ import Divider from "@/components/atoms/Divider/Divider";
 import DatePicker from "react-native-modern-datepicker";
 import Datepicker from "@/components/atoms/DatePicker/Datepicker";
 import dayjs from "dayjs";
+import PassangerDetailPicker from "@/components/molecules/PassangerDetailPicker";
+import FlightClassPicker from "@/components/molecules/FlightClassPicker";
 
 const FlightSearchCard = () => {
   const styles = createStyles();
-  const [value, setValue] = useState<string>("1");
+  const [tripType, setTripType] = useState<string>("1");
   const [filghtRoute, setFilghtRoute] = useState({ from: "", to: "" });
   const [departureDate, setDepartureDate] = useState("");
   const [returnDate, setReturnDate] = useState("");
+  const [passangerDetails, setPassangerDetails] = useState({
+    adults: 0,
+    kids: 0,
+    infants: 0,
+  });
 
   return (
     <View style={[styles.container]}>
@@ -31,8 +38,8 @@ const FlightSearchCard = () => {
               { key: "2", text: "Round Trip" },
             ]}
             containerStyle={styles.radiogroup}
-            value={value}
-            setValue={setValue}
+            value={tripType}
+            setValue={setTripType}
           />
         </View>
         <View style={styles.flightSearchContainer}>
@@ -78,14 +85,50 @@ const FlightSearchCard = () => {
           </View>
         </View>
       </View>
-      <View style={styles.datePickerCard}>
-        <Datepicker
-          initialDate={departureDate}
-          label="Departure"
-          selectedDate={departureDate}
-          setSelectedDate={setDepartureDate}
-        />
+      <View style={styles.dateContainer}>
+        <View
+          style={[
+            styles.datePickerCard,
+            tripType === "2" ? { flex: 0.5, marginRight: 8 } : {},
+          ]}
+        >
+          <Datepicker
+            initialDate={departureDate}
+            label="Departure"
+            selectedDate={departureDate}
+            setSelectedDate={setDepartureDate}
+          />
+        </View>
+        {tripType === "2" && (
+          <View
+            style={[
+              styles.datePickerCard,
+              tripType === "2" ? { flex: 0.5 } : {},
+            ]}
+          >
+            <Datepicker
+              initialDate={returnDate}
+              label="Return"
+              selectedDate={returnDate}
+              setSelectedDate={setReturnDate}
+            />
+          </View>
+        )}
       </View>
+      <View style={styles.passangerDetailsContainer}>
+        <View
+          style={[styles.passangerDetailsCard, { flex: 0.6, marginRight: 10 }]}
+        >
+          <PassangerDetailPicker
+            passangerDetails={passangerDetails}
+            setPassangerDetails={setPassangerDetails}
+          />
+        </View>
+        <View style={[styles.passangerDetailsCard, { flex: 0.4 }]}>
+          <FlightClassPicker />
+        </View>
+      </View>
+
       <Button
         variant="primary"
         onPress={() => console.log("Search Pressed")}
@@ -131,21 +174,30 @@ const createStyles = () => {
       backgroundColor: theme.backgrounds.white
         .backgroundColor as unknown as string,
       position: "relative",
-      borderRadius: 16,
+      borderRadius: 10,
       padding: 20,
     },
     datePickerCard: {
       alignContent: "center",
       justifyContent: "flex-start",
       alignItems: "center",
-      height: 70,
+      height: 50,
       width: "100%",
       backgroundColor: theme.backgrounds.white
         .backgroundColor as unknown as string,
       position: "relative",
-      borderRadius: 16,
-      padding: 20,
-      marginTop: 10,
+      borderRadius: 10,
+      padding: 15,
+    },
+    passangerDetailsCard: {
+      alignContent: "flex-start",
+      justifyContent: "flex-start",
+      alignItems: "center",
+      backgroundColor: theme.backgrounds.white
+        .backgroundColor as unknown as string,
+      position: "relative",
+      borderRadius: 10,
+      padding: 10,
     },
     radiogroup: {
       flexDirection: "row",
@@ -193,6 +245,20 @@ const createStyles = () => {
       height: "50%",
       backgroundColor: theme.colors.gray800,
       borderStyle: "dashed",
+    },
+    dateContainer: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
+      width: "100%",
+      marginTop: 10,
+    },
+    passangerDetailsContainer: {
+      flexDirection: "row",
+      justifyContent: "space-between",
+      alignItems: "center",
+      width: "100%",
+      marginTop: 10,
     },
   });
 };
