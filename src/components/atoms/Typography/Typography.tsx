@@ -48,21 +48,26 @@ const styles = StyleSheet.create({
   heading: {
     fontSize: 24,
     fontWeight: "bold",
+    fontFamily: "Quicksand-Regular",
   },
   subheading: {
     fontSize: 18,
     fontWeight: "bold",
+    fontFamily: "Quicksand-Regular",
   },
   body: {
     fontSize: 16,
+    fontFamily: "Quicksand-Regular",
   },
   caption: {
     fontSize: 14,
     color: "#888", // Default color for caption
+    fontFamily: "Quicksand-Regular",
   },
   link: {
     fontSize: 14,
     color: "#888", // Default color for caption
     textDecorationLine: "underline",
+    fontFamily: "Quicksand-Regular",
   },
 });

@@ -1,10 +1,11 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import Typography from "@/components/atoms/Typography/Typography";
 
 const PopularDestinations = () => {
   return (
     <View>
-      <Text>PopularDestinations</Text>
+      <Typography variant="heading">PopularDestinations</Typography>
     </View>
   );
 };
